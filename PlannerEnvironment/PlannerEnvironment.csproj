@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E130A43F-6221-4C87-9EB7-3FAFC082063A}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PlannerEnvironment</RootNamespace>
+    <AssemblyName>PlannerEnvironment</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Context\Action.cs" />
+    <Compile Include="Context\ActionDefinitions.cs" />
+    <Compile Include="Context\Observation.cs" />
+    <Compile Include="Context\ObservationDefinitions.cs" />
+    <Compile Include="Context\Reward.cs" />
+    <Compile Include="Context\RewardDefinitions.cs" />
+    <Compile Include="Context\State.cs" />
+    <Compile Include="Context\StateDefinitions.cs" />
+    <Compile Include="FileDownloader\CookieAwareWebClient.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FileDownloader\Downloader.cs" />
+    <Compile Include="FileDownloader\DownloadYahooFinance.cs" />
+    <Compile Include="FileDownloader\Program.cs" />
+    <Compile Include="MathModels\EvaluateMethods.cs" />
+    <Compile Include="MathModels\FinancialLibrary.cs" />
+    <Compile Include="MathModels\Program.cs" />
+    <Compile Include="MathModels\StatisticLib.cs" />
+    <Compile Include="MathModels\Statistics.cs" />
+    <Compile Include="ObservationGenerator\ObservationGenerator.cs" />
+    <Compile Include="Planner\Planner.cs" />
+    <Compile Include="ProbabilityGenerator\ObservationProbability.cs" />
+    <Compile Include="ProbabilityGenerator\StateProbability.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Simulator\Simulation.cs" />
+    <Compile Include="TechnicalAnalysis\ADX.cs" />
+    <Compile Include="TechnicalAnalysis\ATR.cs" />
+    <Compile Include="TechnicalAnalysis\BollingerBands.cs" />
+    <Compile Include="TechnicalAnalysis\BollingerBandwidth.cs" />
+    <Compile Include="TechnicalAnalysis\CCI.cs" />
+    <Compile Include="TechnicalAnalysis\EMA.cs" />
+    <Compile Include="TechnicalAnalysis\MACD.cs" />
+    <Compile Include="TechnicalAnalysis\MAO.cs" />
+    <Compile Include="TechnicalAnalysis\Momentum.cs" />
+    <Compile Include="TechnicalAnalysis\OST.cs" />
+    <Compile Include="TechnicalAnalysis\PivotResistance.cs" />
+    <Compile Include="TechnicalAnalysis\PluginAbstract.cs" />
+    <Compile Include="TechnicalAnalysis\ROC.cs" />
+    <Compile Include="TechnicalAnalysis\RSI.cs" />
+    <Compile Include="TechnicalAnalysis\SAR.cs" />
+    <Compile Include="TechnicalAnalysis\SMA.cs" />
+    <Compile Include="Trader\BDI\Cotacao.cs" />
+    <Compile Include="Trader\BDI\Unzip.cs" />
+    <Compile Include="Trader\Program.cs" />
+    <Compile Include="Trader\Series.cs" />
+    <Compile Include="Trader\TimeSeries.cs" />
+    <Compile Include="Trader\TimeSeriesDTO.cs" />
+    <Compile Include="Utils\Randomize.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PlannerInterfaces\PlannerInterfaces.csproj">
+      <Project>{eaa7f024-945b-4cc3-b8a0-50d635bcf3e3}</Project>
+      <Name>PlannerInterfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PomdpCassandra\PomdpCassandra.csproj">
+      <Project>{bec3a257-d4d2-49b6-b552-292c8a5fe0b2}</Project>
+      <Name>PomdpCassandra</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PomdpPBVI0\PomdpPBVI0.csproj">
+      <Project>{9b5eab1d-64d0-402c-a396-9f98297e7028}</Project>
+      <Name>PomdpPBVI0</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PomdpPBVI1\PomdpPBVI1.csproj">
+      <Project>{c5a6e495-7da6-42b4-82ce-8ebafe0fe140}</Project>
+      <Name>PomdpPBVI1</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PomdpPBVI2\PomdpPBVI2.csproj">
+      <Project>{28d27f13-9343-4bb8-8861-707899d63e6c}</Project>
+      <Name>PomdpPBVI2</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="plugins\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
